@@ -78,10 +78,6 @@ export class Table extends Component {
         this.tableRef = React.createRef();
     }
 
-    componentWillMount(){
-        window.addEventListener('resize', throttle(this.resizeTable, 150));
-    }
-
     componentDidUpdate(prevProps){
         if (prevProps.isCollapsible !== this.props.isCollapsible) {
             this.resizeTable()
@@ -89,6 +85,7 @@ export class Table extends Component {
     }
 
     componentDidMount(){
+        window.addEventListener('resize', this.resizeTable);
         this.resizeTable();
     }
 
